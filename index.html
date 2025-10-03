@@ -13,6 +13,10 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
+        /* Transição do header para aparecer/desaparecer suavemente */
+        #header {
+            transition: opacity 300ms ease, background-color 300ms ease, box-shadow 300ms ease;
+        }
         /* Estilos para efeito de zoom e modal de imagem */
         .zoomable-img {
             cursor: pointer;
@@ -62,7 +66,7 @@
 <body class="bg-gray-900 text-gray-200">
 
     <!-- Cabeçalho -->
-    <header id="header" class="sticky top-0 z-50 transition-all duration-300 bg-transparent">
+    <header id="header" class="sticky top-0 z-50 transition-all duration-300 bg-transparent opacity-0 pointer-events-none">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <a href="#" class="text-2xl font-bold text-white flex items-center">
@@ -556,17 +560,27 @@
             });
         });
 
-    // Efeito no cabeçalho ao rolar a página
+        // Efeito no cabeçalho ao rolar a página
         const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 10) {
-                header.classList.add('bg-gray-900/95', 'shadow-lg', 'backdrop-blur-sm');
-                header.classList.remove('bg-transparent');
+        const heroSection = document.querySelector('main section'); // primeiro section é o hero
+
+        function updateHeaderOnScroll() {
+            // usa a altura do hero como limiar; se não encontrado, usa 10px como fallback
+            const threshold = heroSection ? (heroSection.offsetHeight - 10) : 10;
+            if (window.scrollY > threshold) {
+                // mostrar o cabeçalho com fundo levemente transparente para não bloquear o conteúdo
+                header.classList.remove('bg-transparent', 'opacity-0', 'pointer-events-none');
+                header.classList.add('bg-gray-900/30', 'shadow-lg', 'backdrop-blur-sm');
             } else {
-                header.classList.remove('bg-gray-900/95', 'shadow-lg', 'backdrop-blur-sm');
-                header.classList.add('bg-transparent');
+                // dentro do hero: esconder/transparentizar o cabeçalho para dar ênfase
+                header.classList.remove('bg-gray-900/30', 'shadow-lg', 'backdrop-blur-sm');
+                header.classList.add('bg-transparent', 'opacity-0', 'pointer-events-none');
             }
-        });
+        }
+
+        // estado inicial e listener
+        updateHeaderOnScroll();
+        window.addEventListener('scroll', updateHeaderOnScroll);
 
     // Acordeão do FAQ
         const faqItems = document.querySelectorAll('.faq-item');

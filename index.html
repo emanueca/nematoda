@@ -13,6 +13,50 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
+        /* Estilos para efeito de zoom e modal de imagem */
+        .zoomable-img {
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .zoomable-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+            z-index: 2;
+        }
+
+        /* Modal de imagem */
+        #imgModal {
+            display: none; /* mostrado via JS */
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        #imgModal.open { display: flex; }
+        #imgModal img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+        }
+        #imgModal .close-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            color: #fff;
+            font-size: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.25rem 0.5rem;
+        }
+        @media (max-width: 640px) {
+            #imgModal .close-btn { right: 0.75rem; top: 0.75rem; }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
@@ -421,6 +465,12 @@
         </section>
     </main>
 
+    <!-- Modal para exibir imagem ampliada -->
+    <div id="imgModal" aria-hidden="true">
+        <button class="close-btn" id="closeModal" aria-label="Fechar">&times;</button>
+        <img id="modalImg" src="" alt="Imagem ampliada">
+    </div>
+
     <!-- Footer -->
     <footer class="bg-black text-gray-400 py-12">
         <div class="container mx-auto px-6">
@@ -548,6 +598,49 @@
                 }
             });
         });
+
+        // Modal de imagem: ao clicar em qualquer imagem do diretório archives/ abre em tela cheia
+        (function(){
+            const modal = document.getElementById('imgModal');
+            const modalImg = document.getElementById('modalImg');
+            const closeBtn = document.getElementById('closeModal');
+
+            function openModal(src, alt) {
+                modalImg.src = src;
+                modalImg.alt = alt || 'Imagem ampliada';
+                modal.classList.add('open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modal.setAttribute('aria-hidden', 'true');
+                modalImg.src = '';
+                document.body.style.overflow = ''; 
+            }
+
+            // Add clase e listener para imagens do diretório archives/
+            document.querySelectorAll('img').forEach(img => {
+                try {
+                    if(img.getAttribute('src') && img.getAttribute('src').includes('archives/')){
+                        img.classList.add('zoomable-img');
+                        img.addEventListener('click', () => openModal(img.src, img.alt));
+                    }
+                } catch(e) { /* proteção contra atributos inválidos */ }
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            // fechar ao clicar fora da imagem
+            modal.addEventListener('click', (e) => {
+                if(e.target === modal) closeModal();
+            });
+
+            // fechar com Esc
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+            });
+        })();
 
     </script>
 </body>

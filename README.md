@@ -1,151 +1,52 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-</head>
-<body>
-  <div class="container">
-    <h1>Projeto Nematoda: Vida e Impacto</h1>
+# Projeto Nematoda: Vida e Impacto
 
-    <p>
-      Este projeto tem como objetivo criar um produto digital que sirva de material educativo sobre o
-      <strong>Filo Nematoda</strong>. O site apresenta de forma organizada e acessível
-      informações essenciais sobre a diversidade, a morfologia, o ciclo de vida, as doenças associadas
-      e as formas de prevenção relacionadas a esses animais.
-    </p>
+Este projeto tem como **objetivo** criar um produto digital educativo sobre o **Filo Nematoda**. O site apresenta, de forma organizada e acessível, informações essenciais sobre a diversidade, morfologia, ciclo de vida, doenças associadas e formas de prevenção.
 
-    <h2>Sobre o Filo Nematoda</h2>
-    <p>
-      Os nematódeos são vermes cilíndricos alongados que apresentam simetria bilateral e
-      são revestidos por uma cutícula resistente. São encontrados em praticamente todos os
-      ambientes da Terra, com milhares de espécies descritas, desde organismos de vida
-      livre essenciais para a decomposição de matéria orgânica até parasitas de plantas e animais.
-    </p>
-    <figure>
-      <img src="archives/morfologia.jpg" alt="Dimorfismo sexual em Ascaris lumbricoides">
-      <figcaption>
-        Dimorfismo sexual em <em>Ascaris lumbricoides</em> (macho e fêmea de comprimentos diferentes).
-      </figcaption>
-    </figure>
-    <p>
-      A espécie <em>Ascaris lumbricoides</em>, conhecida como lombriga, apresenta dimorfismo sexual evidente: os
-      machos são menores e possuem a extremidade posterior curvada, enquanto as fêmeas são maiores e possuem
-      extremidade reta. Além disso, os nematódeos se caracterizam por um sistema digestório completo (boca
-      e ânus) e um sistema reprodutor complexo.
-    </p>
+## Sobre o Filo Nematoda
+Os nematódeos são vermes cilíndricos alongados com simetria bilateral e cutícula resistente. Habitam praticamente todos os ambientes da Terra, com milhares de espécies descritas — de vida livre (papel ecológico) a parasitas de plantas e animais.
 
-    <h2>Doenças Causadas por Nematódeos</h2>
-    <p>
-      Diversas espécies de nematódeos parasitam seres humanos, causando doenças conhecidas como helmintíases.
-      A seguir, são apresentadas as principais enfermidades abordadas no projeto, acompanhadas de seus ciclos de vida.
-    </p>
+![Dimorfismo sexual em *Ascaris lumbricoides*](archives/morfologia.jpg)
 
-    <h3>Ascaridíase</h3>
-    <p>
-      A ascaridíase é causada pela lombriga <em>Ascaris lumbricoides</em>. A infecção ocorre pela ingestão
-      de ovos presentes em água ou alimentos contaminados. Após eclodirem no intestino, as larvas realizam
-      uma migração complexa pelo organismo até retornarem ao intestino delgado, onde se tornam adultas e se reproduzem.
-    </p>
-    <figure>
-      <img src="archives/ascaridiase.jpg" alt="Ciclo de vida da ascaridíase">
-      <figcaption>
-        Ciclo de vida da ascaridíase: ingestão de ovos, migração das larvas pelo corpo e retorno ao intestino.
-      </figcaption>
-    </figure>
+A espécie *Ascaris lumbricoides* (lombriga) apresenta **dimorfismo sexual** (machos menores e com extremidade posterior curvada; fêmeas maiores e com extremidade reta). Os nematódeos possuem **sistema digestório completo** (boca e ânus) e **sistema reprodutor** desenvolvido.
 
-    <h3>Ancilostomíase (Amarelão)</h3>
-    <p>
-      Conhecida popularmente como amarelão, a ancilostomíase é provocada por vermes
-      <em>Ancylostoma duodenale</em> e <em>Necator americanus</em>. As larvas presentes no solo penetraram
-      pela pele (geralmente dos pés descalços), alcançam a circulação sanguínea, migram para os pulmões e retornam
-      ao intestino, onde atingem a fase adulta.
-    </p>
-    <figure>
-      <img src="archives/Ancilostom%C3%ADase.png" alt="Ciclo da ancilostomíase">
-      <figcaption>
-        Ciclo da ancilostomíase: penetração cutânea, migração sistêmica e desenvolvimento no intestino.
-      </figcaption>
-    </figure>
+## Doenças causadas por nematódeos
 
-    <h3>Larva Migrans Cutânea</h3>
-    <p>
-      A larva migrans cutânea é causada por larvas de nematódeos de cães e gatos que, ao
-      penetrarem a pele humana, provocam lesões serpiginosas. O parasita não completa seu ciclo em humanos e permanece
-      restrito à pele.
-    </p>
-    <figure>
-      <img src="archives/larva-migrans-ciclo.jpg" alt="Ciclo da larva migrans cutânea">
-      <figcaption>
-        Ciclo da larva migrans cutânea: ovos eliminados nas fezes de animais, larvas no solo e infecção acidental em humanos.
-      </figcaption>
-    </figure>
+### Ascaridíase
+Infecção por *Ascaris lumbricoides*. Ocorre pela ingestão de ovos em água/alimentos contaminados.  
+![Ciclo de vida da ascaridíase](archives/ascaridiase.jpg)
 
-    <h3>Filariose (Elefantíase)</h3>
-    <p>
-      A filariose linfática é transmitida pela picada de mosquitos que hospedam as larvas de vermes como
-      <em>Wuchereria bancrofti</em>. As larvas desenvolvem-se no interior do mosquito e são inoculadas durante a picada,
-      instalando-se nos vasos linfáticos humanos. A obstrução desses vasos causa inchaços crônicos conhecidos
-      como elefantíase.
-    </p>
-    <figure>
-      <img src="archives/vidafilaria.jpg" alt="Ciclo da filariose">
-      <figcaption>
-        Ciclo da filariose: produção de larvas pelos vermes adultos, transmissão via mosquitos e desenvolvimento no ser humano.
-      </figcaption>
-    </figure>
+### Ancilostomíase (amarelão)
+Causada por *Ancylostoma duodenale* e *Necator americanus*. As larvas no solo **penetram pela pele** (geralmente pés descalços), migram e retornam ao intestino.  
+![Ciclo da ancilostomíase](archives/Ancilostom%C3%ADase.png)
 
-    <h3>Oxiurose</h3>
-    <p>
-      A oxiurose (enterobiose) é causada pelo nematódeo <em>Enterobius vermicularis</em>. Os ovos são ingeridos ou inalados
-      acidentalmente, eclodem no intestino delgado e os adultos alojam-se no ceco. As fêmeas grávidas migram para a região
-      perianal durante a noite para depositar seus ovos, provocando intenso prurido.
-    </p>
-    <figure>
-      <img src="archives/oxiurosecicloeditavel-cke.jpg" alt="Ciclo da oxiurose">
-      <figcaption>
-        Ciclo da oxiurose: ingestão de ovos, eclosão e maturação no intestino e deposição de ovos na região perianal.
-      </figcaption>
-    </figure>
+### Larva migrans cutânea
+Larvas de nematódeos de **cães e gatos** infectam acidentalmente a pele humana, causando lesões serpiginosas (o parasita **não completa** o ciclo em humanos).  
+![Ciclo da larva migrans](archives/larva-migrans-ciclo.jpg)
 
-    <h2>Prevenção e Controle</h2>
-    <p>
-      A melhor estratégia contra as helmintíases é a prevenção. Medidas simples podem interromper os ciclos de transmissão
-      dos nematódeos parasitas:
-    </p>
-    <ul>
-      <li>Melhoria do saneamento básico, com coleta e tratamento de esgoto e abastecimento de água potável;</li>
-      <li>Higiene pessoal e limpeza adequada de alimentos;</li>
-      <li>Uso de calçados para evitar a penetração de larvas pelo solo;</li>
-      <li>Vermifugação de cães e gatos para reduzir o risco de larva migrans;</li>
-      <li>Campanhas de desparasitação em massa e educação sanitária em áreas endêmicas.</li>
-    </ul>
-    <figure>
-      <img src="archives/SaneamentoBasico.png" alt="Infográfico sobre saneamento básico">
-      <figcaption>
-        Saneamento básico: abastecimento de água potável, coleta e tratamento de esgoto, limpeza urbana e drenagem de águas pluviais.
-      </figcaption>
-    </figure>
+### Filariose (elefantíase)
+Transmitida por **mosquitos**; *Wuchereria bancrofti* se instala nos **vasos linfáticos**, podendo causar **linfedema crônico** (elefantíase).  
+![Ciclo da filariose](archives/vidafilaria.jpg)
 
-    <h2>Créditos</h2>
-    <p>
-      As imagens utilizadas neste projeto foram coletadas de materiais educativos e fontes abertas. Sempre que possível,
-      mencionamos a origem e autores das figuras. Recomenda-se consultar os sites originais para informações detalhadas
-      e atualizadas sobre cada doença.
-    </p>
-    <ul>
-      <li><strong>morfologia.jpg</strong> – ilustração do dimorfismo sexual em <em>Ascaris lumbricoides</em>.</li>
-      <li><strong>ascaridiase.jpg</strong> – ciclo de vida da ascaridíase, adaptado de materiais do CDC.</li>
-      <li><strong>Ancilostomíase.png</strong> – ciclo da ancilostomíase, com fases de penetração cutânea e migração.</li>
-      <li><strong>larva-migrans-ciclo.jpg</strong> – infográfico da larva migrans cutânea, baseado em recursos da DPDx/CDC.</li>
-      <li><strong>vidafilaria.jpg</strong> – esquema da filariose/elefantíase, ilustrando a transmissão via mosquitos.</li>
-      <li><strong>oxiurosecicloeditavel-cke.jpg</strong> – ciclo da oxiurose (enterobiose).</li>
-      <li><strong>SaneamentoBasico.png</strong> – infográfico sobre os componentes do saneamento básico.</li>
-    </ul>
+### Oxiurose (enterobiose)
+Causada por *Enterobius vermicularis*. Ovos são ingeridos/inalados; fêmeas gravídicas migram à **região perianal** à noite para oviposição (prurido).  
+![Ciclo da oxiurose](archives/oxiurosecicloeditavel-cke.jpg)
 
-    <p>
-      Este projeto faz parte de um trabalho acadêmico da disciplina de Zoologia, cujo objetivo é integrar pesquisa
-      científica e comunicação visual para informar a comunidade sobre os riscos e formas de prevenção das
-      verminoses causadas por nematódeos.
-    </p>
-  </div>
-</body>
-</html>
+## Prevenção e controle
+- **Saneamento básico**: água potável, coleta e tratamento de esgoto  
+- **Higiene** pessoal e de alimentos  
+- **Uso de calçados** (evita penetração de larvas no solo)  
+- **Vermifugação** de cães e gatos (larva migrans)  
+- **Desparasitação em massa** e **educação sanitária** em áreas endêmicas
+
+![Infográfico de saneamento básico](archives/SaneamentoBasico.png)
+
+## Créditos de imagens
+- `archives/ascaridiase.jpg` – ciclo de *Ascaris* (material educativo CDC/DPDx).  
+- `archives/Ancilostom%C3%ADase.png` – ciclo de ancilostomíase (material educativo).  
+- `archives/larva-migrans-ciclo.jpg` – adaptado de CDC/DPDx (larva migrans).  
+- `archives/vidafilaria.jpg` – ciclo de filariose (material educativo).  
+- `archives/oxiurosecicloeditavel-cke.jpg` – ciclo de oxiurose (material educativo).  
+- `archives/morfologia.jpg` – dimorfismo sexual em *Ascaris*.  
+- `archives/SaneamentoBasico.png` – infográfico de saneamento básico.
+
+> Observação: algumas figuras derivam de materiais do **CDC/DPDx** e de portais educativos (ex.: MD.Saúde). Quando aplicável, mantenha a atribuição e os termos de uso originais.

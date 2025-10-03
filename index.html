@@ -17,6 +17,24 @@
         #header {
             transition: opacity 300ms ease, background-color 300ms ease, box-shadow 300ms ease;
         }
+        /* Forçar header completamente transparente e sem bordas quando escondido
+           e evitar qualquer linha ou sombra residual no topo da página */
+        #header {
+            background-color: transparent !important;
+            border-top: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Quando o header estiver sobre o hero: posicione absolute e remova qualquer sombra/borda */
+        #header.in-hero {
+            position: absolute !important;
+            left: 0;
+            right: 0;
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
         /* Estilos para efeito de zoom e modal de imagem */
         .zoomable-img {
             cursor: pointer;
@@ -66,7 +84,7 @@
 <body class="bg-gray-900 text-gray-200">
 
     <!-- Cabeçalho -->
-    <header id="header" class="sticky top-0 z-50 transition-all duration-300 bg-transparent opacity-0 pointer-events-none">
+    <header id="header" class="sticky top-0 z-50 transition-all duration-300 bg-transparent opacity-0 pointer-events-none in-hero">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <a href="#" class="text-2xl font-bold text-white flex items-center">
@@ -569,12 +587,12 @@
             const threshold = heroSection ? (heroSection.offsetHeight - 10) : 10;
             if (window.scrollY > threshold) {
                 // mostrar o cabeçalho com fundo levemente transparente para não bloquear o conteúdo
-                header.classList.remove('bg-transparent', 'opacity-0', 'pointer-events-none');
+                header.classList.remove('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero');
                 header.classList.add('bg-gray-900/30', 'shadow-lg', 'backdrop-blur-sm');
             } else {
                 // dentro do hero: esconder/transparentizar o cabeçalho para dar ênfase
                 header.classList.remove('bg-gray-900/30', 'shadow-lg', 'backdrop-blur-sm');
-                header.classList.add('bg-transparent', 'opacity-0', 'pointer-events-none');
+                header.classList.add('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero');
             }
         }
 

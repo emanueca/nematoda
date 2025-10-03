@@ -15,7 +15,8 @@
         }
         /* Transição do header para aparecer/desaparecer suavemente */
         #header {
-            transition: opacity 300ms ease, background-color 300ms ease, box-shadow 300ms ease;
+            transition: opacity 300ms ease, background-color 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+            transform: translateY(0);
         }
         /* Forçar header completamente transparente e sem bordas quando escondido
            e evitar qualquer linha ou sombra residual no topo da página */
@@ -35,6 +36,9 @@
             box-shadow: none !important;
             border: none !important;
         }
+    /* Classes para efeito de deslizar */
+    #header.slide-in { transform: translateY(0); }
+    #header.slide-out { transform: translateY(-100%); }
         /* Estilos para efeito de zoom e modal de imagem */
         .zoomable-img {
             cursor: pointer;
@@ -84,7 +88,7 @@
 <body class="bg-gray-900 text-gray-200">
 
     <!-- Cabeçalho -->
-    <header id="header" class="sticky top-0 z-50 transition-all duration-300 bg-transparent opacity-0 pointer-events-none in-hero">
+    <header id="header" class="sticky top-0 z-50 transition-all duration-300 bg-transparent opacity-0 pointer-events-none in-hero slide-out">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <a href="#" class="text-2xl font-bold text-white flex items-center">
@@ -582,28 +586,28 @@
         const header = document.getElementById('header');
         const heroSection = document.querySelector('main section'); // primeiro section é o hero
 
-        // Mostrar/ocultar header com base na direção do scroll
-        let lastScrollY = window.scrollY;
+    // Mostrar/ocultar header com base na direção do scroll
+    let lastScrollY = window.scrollY;
         function showHeader() {
-            header.classList.remove('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero');
-            header.classList.add('bg-gray-900/50', 'shadow-lg', 'backdrop-blur-sm');
+            header.classList.remove('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero', 'slide-out');
+            header.classList.add('bg-gray-900/50', 'shadow-lg', 'backdrop-blur-sm', 'slide-in');
         }
         function hideHeader() {
-            header.classList.remove('bg-gray-900/50', 'shadow-lg', 'backdrop-blur-sm');
-            header.classList.add('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero');
+            header.classList.remove('bg-gray-900/50', 'shadow-lg', 'backdrop-blur-sm', 'slide-in');
+            header.classList.add('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero', 'slide-out');
         }
 
         function updateHeaderOnScroll() {
-            // usa a altura do hero como limiar; se não encontrado, usa 10px como fallback
-            const threshold = heroSection ? (heroSection.offsetHeight - 10) : 10;
+            // usa a altura do hero como limiar; se não encontrado, usa 40px como fallback
+            const heroThreshold = heroSection ? (heroSection.offsetHeight - 10) : Infinity;
+            const smallThreshold = 40; // mostra header quando rolar um pequeno trecho
             const currentY = window.scrollY;
             const isScrollingDown = currentY > lastScrollY;
 
-            if (currentY > threshold && isScrollingDown) {
-                // somente mostrar quando passou do hero e o usuário rolar para baixo
+            // Mostrar se rolou para baixo mais que smallThreshold ou se passou do hero e rolando para baixo
+            if ((currentY > smallThreshold && isScrollingDown) || (currentY > heroThreshold && isScrollingDown)) {
                 showHeader();
             } else {
-                // esconder se estiver no hero ou se o usuário rolar para cima
                 hideHeader();
             }
 

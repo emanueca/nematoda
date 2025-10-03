@@ -582,18 +582,32 @@
         const header = document.getElementById('header');
         const heroSection = document.querySelector('main section'); // primeiro section é o hero
 
+        // Mostrar/ocultar header com base na direção do scroll
+        let lastScrollY = window.scrollY;
+        function showHeader() {
+            header.classList.remove('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero');
+            header.classList.add('bg-gray-900/50', 'shadow-lg', 'backdrop-blur-sm');
+        }
+        function hideHeader() {
+            header.classList.remove('bg-gray-900/50', 'shadow-lg', 'backdrop-blur-sm');
+            header.classList.add('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero');
+        }
+
         function updateHeaderOnScroll() {
             // usa a altura do hero como limiar; se não encontrado, usa 10px como fallback
             const threshold = heroSection ? (heroSection.offsetHeight - 10) : 10;
-            if (window.scrollY > threshold) {
-                // mostrar o cabeçalho com fundo levemente transparente para não bloquear o conteúdo
-                header.classList.remove('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero');
-                header.classList.add('bg-gray-900/30', 'shadow-lg', 'backdrop-blur-sm');
+            const currentY = window.scrollY;
+            const isScrollingDown = currentY > lastScrollY;
+
+            if (currentY > threshold && isScrollingDown) {
+                // somente mostrar quando passou do hero e o usuário rolar para baixo
+                showHeader();
             } else {
-                // dentro do hero: esconder/transparentizar o cabeçalho para dar ênfase
-                header.classList.remove('bg-gray-900/30', 'shadow-lg', 'backdrop-blur-sm');
-                header.classList.add('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero');
+                // esconder se estiver no hero ou se o usuário rolar para cima
+                hideHeader();
             }
+
+            lastScrollY = currentY;
         }
 
         // estado inicial e listener

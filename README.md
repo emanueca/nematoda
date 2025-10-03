@@ -1,45 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>README - Projeto Nematoda</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-    h1, h2 {
-      color: #2c3e50;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 15px;
-    }
-    figure {
-      margin: 0 0 25px 0;
-    }
-    figcaption {
-      font-size: 0.9em;
-      color: #555;
-      text-align: center;
-    }
-    ul {
-      list-style-type: disc;
-      margin-left: 20px;
-    }
-  </style>
 </head>
 <body>
   <div class="container">

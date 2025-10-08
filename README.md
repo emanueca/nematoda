@@ -48,5 +48,10 @@ Causada por *Enterobius vermicularis*. Ovos são ingeridos/inalados; fêmeas gra
 - `archives/oxiurosecicloeditavel-cke.jpg` – ciclo de oxiurose (material educativo).  
 - `archives/morfologia.jpg` – dimorfismo sexual em *Ascaris*.  
 - `archives/SaneamentoBasico.png` – infográfico de saneamento básico.
+**Referências bibliográficas:**
+- BRUSCA, R. C.; BRUSCA, G. J. 2 ed. Invertebrates. Sinauer.
+- MALAKOV, V. V. Nematodes: structure, development, classification and phylogeny, 1994.
+- BRUMAN, J. Principles of Nematology.
 
 > Observação: algumas figuras derivam de materiais do **CDC/DPDx** e de portais educativos (ex.: MD.Saúde). Quando aplicável, mantenha a atribuição e os termos de uso originais.
+

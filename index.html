@@ -27,16 +27,7 @@
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
-  }
-}
-</script>
-</head>
+  </head>
   <body class="bg-brand-bg">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
@@ -128,8 +119,8 @@
               <div className="w-full max-w-4xl mx-auto">
                   <div 
                       className="relative bg-cover bg-center rounded-2xl shadow-2xl shadow-black/50 overflow-hidden"
-                      // IMAGEM DE FUNDO: Substitua a URL abaixo pela imagem que desejar.
-                      style={{ backgroundImage: `url('../archives/tumblr_p3ucomEFm01qf252bo1_500.gif')` }}
+                      // IMAGEM DE FUNDO: caminho relativo corrigido
+                      style={{ backgroundImage: `url('archives/tumblr_p3ucomEFm01qf252bo1_500.gif')` }}
                   >
                       <div className="absolute inset-0 bg-brand-card/80 backdrop-blur-sm"></div>
 
@@ -219,6 +210,25 @@
       // --- RENDERIZAÇÃO DA APLICAÇÃO ---
       // Ponto de entrada que informa ao React onde renderizar o componente App.
       const rootElement = document.getElementById('root');
+      // inicializar com verificação (evita erros silenciosos)
+      try {
+        if (!rootElement) throw new Error('Root element not found (#root)');
+        if (ReactDOM && typeof ReactDOM.createRoot === 'function') {
+          ReactDOM.createRoot(rootElement).render(
+            <React.StrictMode><App /></React.StrictMode>
+          );
+        } else if (ReactDOM && typeof ReactDOM.render === 'function') {
+          ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, rootElement);
+        } else {
+          throw new Error('ReactDOM não disponível');
+        }
+      } catch (err) {
+        console.error(err);
+        document.body.innerHTML = `<pre style="color:white;padding:16px;background:#111;font-family:monospace;">Erro ao iniciar a app:\n${String(err)}</pre>`;
+      }
+    </script>
+  </body>
+</html>
       const root = ReactDOM.createRoot(rootElement);
       root.render(
         <React.StrictMode>

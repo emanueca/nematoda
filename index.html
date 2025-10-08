@@ -23,16 +23,26 @@
         }
       }
     </script>
-    <!-- React & Babel for JSX -->
+    <!-- React & Babel para transformação de JSX no navegador -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  </head>
-  <body>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body class="bg-brand-bg">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
     <script type="text/babel">
+      // --- COMPONENTES DE ÍCONES ---
       const ChevronDownIcon = ({ className }) => (
           <svg 
               className={className}
@@ -63,6 +73,7 @@
           </svg>
       );
 
+      // --- COMPONENTE DE NAVEGAÇÃO RÁPIDA (RODAPÉ) ---
       const QuickNav = () => (
           <footer className="bg-brand-accent text-brand-text-dark py-12 sm:py-16">
               <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -82,7 +93,7 @@
                           <GitHubIcon />
                           Ver Código no GitHub
                       </a>
-                       <a 
+                      <a 
                           href="https://github.com/emanueca/nematoda/tree/main/archives"
                           target="_blank"
                           rel="noopener noreferrer"
@@ -111,111 +122,109 @@
           </footer>
       );
 
-
-      const App = () => {
+      // --- COMPONENTE DO CARTÃO DE INTRODUÇÃO ---
+      const IntroductionCard = () => {
           return (
-              <div className="bg-brand-bg text-brand-text font-sans min-h-screen flex flex-col">
-                  <main className="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
-                      <div className="w-full max-w-4xl mx-auto">
-                          <div className="bg-brand-card rounded-2xl shadow-2xl shadow-black/50 overflow-hidden">
-                              <div className="relative h-56 sm:h-64 bg-cover bg-center" style={{ backgroundImage: `url('https://picsum.photos/seed/nematoda/1200/400')` }}>
-                                  <div className="absolute inset-0 bg-gradient-to-t from-brand-card via-brand-card/70 to-transparent"></div>
+              <div className="w-full max-w-4xl mx-auto">
+                  <div 
+                      className="relative bg-cover bg-center rounded-2xl shadow-2xl shadow-black/50 overflow-hidden"
+                      // IMAGEM DE FUNDO: Substitua a URL abaixo pela imagem que desejar.
+                      style={{ backgroundImage: `url('../archives/tumblr_p3ucomEFm01qf252bo1_500.gif')` }}
+                  >
+                      <div className="absolute inset-0 bg-brand-card/80 backdrop-blur-sm"></div>
 
-                                  <img src="../archives/tumblr_p3ucomEFm01qf252bo1_500.gif" alt="decorative nematode gif" className="hidden sm:block absolute right-6 top-1/2 transform -translate-y-1/2 w-20 h-20 sm:w-24 sm:h-24 rounded-md object-cover shadow-lg ring-1 ring-white/10" aria-hidden="true"/>
-                                  <div className="absolute bottom-0 left-0 p-6 sm:p-8">
-                                      <h1 className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg">
-                                          Introdução do Trabalho
-                                      </h1>
+                      <div className="relative z-10">
+                          <div className="relative h-56 sm:h-64 flex flex-col justify-end p-6 sm:p-8">
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
+                              
+                              {/* IMAGEM/GIF DE DESTAQUE: Substitua a URL abaixo pelo GIF ou imagem que desejar. */}
+                              <img 
+                                  src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTk4cjYwbDZnZ25pc2VnbHBmY2g2cm53czB2b2g4bHBocHplMmQ2ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L3nWlmgyqCeU8/giphy.gif" 
+                                  alt="GIF de um nematoide se movendo" 
+                                  className="hidden sm:block absolute right-6 top-1/2 transform -translate-y-1/2 w-24 h-24 rounded-md object-cover shadow-lg ring-2 ring-white/20" 
+                                  aria-hidden="true"
+                              />
+                              <div className="relative">
+                                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg">
+                                      Introdução ao Filo Nematoda
+                                  </h1>
+                              </div>
+                          </div>
+
+                          <div className="p-6 sm:p-8 pt-0">
+                              <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+                                  <div>
+                                      <h2 className="text-2xl font-semibold text-white">Um Mundo de Vermes Cilíndricos</h2>
+                                      <p className="text-brand-muted mt-1">
+                                          <strong>Integrantes:</strong> Emanuel Ziegler Martins, Artur Augusto Pessoto
+                                      </p>
                                   </div>
+                                  <a 
+                                      href="https://github.com/emanueca/nematoda"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-block px-4 py-2 text-sm font-semibold bg-white/10 hover:bg-white/20 text-brand-muted rounded-lg transition-colors duration-200 text-center flex-shrink-0"
+                                  >
+                                      Ver Créditos
+                                  </a>
                               </div>
 
-                              <div className="p-6 sm:p-8">
-                                  <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
-                                      <div>
-                                          <h2 className="text-2xl font-semibold text-white">Filo Nematoda</h2>
-                                          <p className="text-brand-muted mt-1">
-                                              <strong>Integrantes:</strong> Emanuel Ziegler Martins, Artur Augusto Pessoto
-                                          </p>
-                                      </div>
-                                      <a 
-                                          href="https://github.com/emanueca/nematoda"
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="inline-block px-4 py-2 text-sm font-semibold bg-white/5 hover:bg-white/10 text-brand-muted rounded-md transition-colors duration-200 text-center"
-                                      >
-                                          Ver Créditos
-                                      </a>
+                              <hr className="border-t border-brand-border my-6" />
+                              
+                              <details className="group bg-black/30 rounded-lg transition-all duration-300 ease-in-out hover:bg-black/40 open:ring-1 open:ring-brand-border open:shadow-lg">
+                                  <summary className="flex items-center justify-between p-4 cursor-pointer list-none">
+                                      <span className="flex items-center gap-3">
+                                          <ChevronDownIcon className="text-brand-accent transform transition-transform duration-300 group-open:rotate-180" />
+                                          <span className="font-semibold text-brand-accent">Visão Detalhada</span>
+                                      </span>
+                                      <span className="hidden sm:inline-block text-sm font-medium text-brand-muted opacity-100 transition-opacity duration-300 group-open:opacity-0">
+                                          Clique para expandir
+                                      </span>
+                                  </summary>
+                                  <div className="px-4 pb-4 text-gray-300/90 space-y-4 leading-relaxed text-sm sm:text-base">
+                                      <p>Nematoda ou Nemata são vermes alongados, cilíndricos e afilados em ambas extremidades. Possivelmente os Metazoários mais abundantes (25.000 spp descritas e milhares não descritas) que incluem muitas formas parasitas de plantas e animais. Apenas os Arthropoda apresentam maior diversidade. O nome vem da palavra grega nema, que significa fio. São animais triblásticos, protostômios, pseudocelomados ou mais recentemente chamados como blastocelomados. Seu corpo cilíndrico, alongado e não segmentado exibe simetria bilateral. Possuem sistema digestivo completo, sistemas circulatório e respiratório ausentes; sistema excretor composto por dois canais longitudinais (renetes-formato de H); sistema nervoso parcialmente centralizado, com anel nervoso ao redor da faringe.</p>
+                                      <p>Ecologicamente são muito bem-sucedidos, sendo tal fato demonstrado pela alta diversidade de espécies. Encontram-se em todos os habitats, terrestres, marinhos e de água doce e chegam a ser mais numerosos que os outros animais, tanto em número de espécies, como de indivíduos. Algumas espécies são microscópicas, enquanto uma espécie, parasita do cachalote pode atingir 13 metros de comprimento.</p>
+                                      <p>A característica que define um pseudocelomado é a ausência de uma camada de epitélio mesodérmico ou peritônio separando o tubo digestivo do celoma e camadas epidérmicas mais superficiais. Os Nematoda possuem glândulas excretoras com canais excretores e difusão através da parede corporal; Ausência de sistema circulatório especial ou estruturas para trocas gasosas; A parede corporal tem apenas músculos longitudinais e musculatura fornece pressão interna em oposição à cutícula.</p>
                                   </div>
+                              </details>
 
-                                  <hr className="border-t border-brand-border my-6" />
-                                  
-                                  <details className="group bg-brand-text-dark/40 rounded-lg transition-all duration-300 ease-in-out open:ring-1 open:ring-brand-border open:shadow-lg">
-                                      <summary className="flex items-center justify-between p-4 cursor-pointer list-none">
-                                          <span className="flex items-center gap-3">
-                                              <ChevronDownIcon className="text-brand-accent transform transition-transform duration-300 group-open:rotate-180" />
-                                              <span className="font-semibold text-brand-accent">Visão Detalhada</span>
-                                          </span>
-                                          <span className="hidden sm:inline-block text-sm font-medium text-brand-muted opacity-100 transition-opacity duration-300 group-open:opacity-0 transform italic -rotate-3">
-                                              Filo Nematoda
-                                          </span>
-                                      </summary>
-                                      <div className="px-4 pb-4 text-gray-300/90 space-y-4 leading-relaxed text-sm sm:text-base">
-                                          <p>Nematoda ou Nemata são vermes alongados, cilíndricos e afilados em ambas extremidades. Possivelmente os Metazoários mais abundantes (25.000 spp descritas e milhares não descritas) que incluem muitas formas parasitas de plantas e animais. Apenas os Arthropoda apresentam maior diversidade. O nome vem da palavra grega nema, que significa fio. São animais triblásticos, protostômios, pseudocelomados ou mais recentemente chamados como blastocelomados. Seu corpo cilíndrico, alongado e não segmentado exibe simetria bilateral. Possuem sistema digestivo completo, sistemas circulatório e respiratório ausentes; sistema excretor composto por dois canais longitudinais (renetes-formato de H); sistema nervoso parcialmente centralizado, com anel nervoso ao redor da faringe.</p>
-                                          <p>Ecologicamente são muito bem-sucedidos, sendo tal fato demonstrado pela alta diversidade de espécies. Encontram-se em todos os habitats, terrestres, marinhos e de água doce e chegam a ser mais numerosos que os outros animais, tanto em número de espécies, como de indivíduos. Algumas espécies são microscópicas, enquanto uma espécie, parasita do cachalote pode atingir 13 metros de comprimento.</p>
-                                          <p>A característica que define um pseudocelomado é a ausência de uma camada de epitélio mesodérmico ou peritônio separando o tubo digestivo do celoma e camadas epidérmicas mais superficiais. Os Nematoda possuem glândulas excretoras com canais excretores e difusão através da parede corporal; Ausência de sistema circulatório especial ou estruturas para trocas gasosas; A parede corporal tem apenas músculos longitudinais e musculatura fornece pressão interna em oposição à cutícula.</p>
-                                      </div>
-                                  </details>
-
-                                  <div className="mt-8 flex items-center gap-4">
-                                      <a 
-                                          href="code/index.html" 
-                                          className="flex-1 sm:flex-none bg-brand-accent hover:bg-yellow-500 text-brand-text-dark font-bold py-3 px-6 rounded-lg text-center transition-transform transform hover:scale-105 duration-300 ease-out shadow-lg shadow-brand-accent/20"
-                                      >
-                                          Abrir Apresentação Completa
-                                      </a>
-                                  </div>
+                              <div className="mt-8 flex items-center gap-4">
+                                  <a 
+                                      href="#"
+                                      className="flex-1 sm:flex-none bg-brand-accent hover:bg-yellow-500 text-brand-text-dark font-bold py-3 px-6 rounded-lg text-center transition-transform transform hover:scale-105 duration-300 ease-out shadow-lg shadow-brand-accent/20"
+                                  >
+                                      Abrir Apresentação Completa
+                                  </a>
                               </div>
                           </div>
                       </div>
+                  </div>
+              </div>
+          );
+      };
+
+      // --- COMPONENTE PRINCIPAL DA APLICAÇÃO (APP) ---
+      // Este componente organiza o layout geral da página.
+      const App = () => {
+          return (
+              <div className="text-brand-text font-sans min-h-screen flex flex-col">
+                  <main className="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
+                      <IntroductionCard />
                   </main>
                   <QuickNav />
               </div>
           );
       };
 
-      // Inicialização do React com fallback para ambientes sem createRoot
+      // --- RENDERIZAÇÃO DA APLICAÇÃO ---
+      // Ponto de entrada que informa ao React onde renderizar o componente App.
       const rootElement = document.getElementById('root');
-      try {
-        if (!rootElement) throw new Error('Root element not found: #root');
-
-        if (ReactDOM && typeof ReactDOM.createRoot === 'function') {
-          ReactDOM.createRoot(rootElement).render(
-            <React.StrictMode>
-              <App />
-            </React.StrictMode>
-          );
-        } else if (ReactDOM && typeof ReactDOM.render === 'function') {
-          // fallback para versões antigas do ReactDOM
-          ReactDOM.render(
-            <React.StrictMode>
-              <App />
-            </React.StrictMode>,
-            rootElement
-          );
-        } else {
-          throw new Error('ReactDOM não está disponível no escopo global.');
-        }
-      } catch (err) {
-        // Em vez de tela branca: mostrar erro legível na página e no console
-        console.error(err);
-        document.body.innerHTML = `
-          <div style="background:#111;color:#fff;padding:24px;font-family:monospace;">
-            <h2>Erro ao inicializar a aplicação React</h2>
-            <pre style="white-space:pre-wrap;">${String(err)}</pre>
-            <p>Verifique o console do navegador para mais detalhes.</p>
-          </div>
-        `;
-      }
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      );
     </script>
   </body>
 </html>

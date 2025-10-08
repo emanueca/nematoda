@@ -27,16 +27,7 @@
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
-  }
-}
-</script>
-</head>
+  </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
@@ -129,7 +120,7 @@
                           <div className="bg-brand-card rounded-2xl shadow-2xl shadow-black/50 overflow-hidden">
                               <div className="relative h-56 sm:h-64 bg-cover bg-center" style={{ backgroundImage: `url('https://picsum.photos/seed/nematoda/1200/400')` }}>
                                   <div className="absolute inset-0 bg-gradient-to-t from-brand-card via-brand-card/70 to-transparent"></div>
-                                  <!-- GIF reposicionado: borda direita, centralizado verticalmente, oculto em telas pequenas -->
+
                                   <img src="../archives/tumblr_p3ucomEFm01qf252bo1_500.gif" alt="decorative nematode gif" className="hidden sm:block absolute right-6 top-1/2 transform -translate-y-1/2 w-20 h-20 sm:w-24 sm:h-24 rounded-md object-cover shadow-lg ring-1 ring-white/10" aria-hidden="true"/>
                                   <div className="absolute bottom-0 left-0 p-6 sm:p-8">
                                       <h1 className="text-3xl sm:text-4xl font-bold text-white drop-shadow-lg">
@@ -192,14 +183,38 @@
           );
       };
 
+      // Inicialização do React com fallback para ambientes sem createRoot
       const rootElement = document.getElementById('root');
-      if (rootElement) {
-        const root = ReactDOM.createRoot(rootElement);
-        root.render(
-          <React.StrictMode>
-            <App />
-          </React.StrictMode>
-        );
+      try {
+        if (!rootElement) throw new Error('Root element not found: #root');
+
+        if (ReactDOM && typeof ReactDOM.createRoot === 'function') {
+          ReactDOM.createRoot(rootElement).render(
+            <React.StrictMode>
+              <App />
+            </React.StrictMode>
+          );
+        } else if (ReactDOM && typeof ReactDOM.render === 'function') {
+          // fallback para versões antigas do ReactDOM
+          ReactDOM.render(
+            <React.StrictMode>
+              <App />
+            </React.StrictMode>,
+            rootElement
+          );
+        } else {
+          throw new Error('ReactDOM não está disponível no escopo global.');
+        }
+      } catch (err) {
+        // Em vez de tela branca: mostrar erro legível na página e no console
+        console.error(err);
+        document.body.innerHTML = `
+          <div style="background:#111;color:#fff;padding:24px;font-family:monospace;">
+            <h2>Erro ao inicializar a aplicação React</h2>
+            <pre style="white-space:pre-wrap;">${String(err)}</pre>
+            <p>Verifique o console do navegador para mais detalhes.</p>
+          </div>
+        `;
       }
     </script>
   </body>

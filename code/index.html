@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="!scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nematoda: Vida e Impacto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Transição do header para aparecer/desaparecer suavemente */
+        #header {
+            transition: opacity 300ms ease, background-color 300ms ease, box-shadow 300ms ease, transform 300ms ease;
+            transform: translateY(0);
+        }
+        /* Forçar header completamente transparente e sem bordas quando escondido
+           e evitar qualquer linha ou sombra residual no topo da página */
+        #header {
+            background-color: transparent !important;
+            border-top: none !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Quando o header estiver sobre o hero: posicione absolute e remova qualquer sombra/borda */
+        #header.in-hero {
+            position: absolute !important;
+            left: 0;
+            right: 0;
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+    /* Classes para efeito de deslizar */
+    #header.slide-in { transform: translateY(0); }
+    #header.slide-out { transform: translateY(-100%); }
+        /* Estilos para efeito de zoom e modal de imagem */
+        .zoomable-img {
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .zoomable-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+            z-index: 2;
+        }
+
+        /* Modal de imagem */
+        #imgModal {
+            display: none; /* mostrado via JS */
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        #imgModal.open { display: flex; }
+        #imgModal img {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+        }
+        #imgModal .close-btn {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            color: #fff;
+            font-size: 2rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.25rem 0.5rem;
+        }
+        @media (max-width: 640px) {
+            #imgModal .close-btn { right: 0.75rem; top: 0.75rem; }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- Cabeçalho -->
+    <header id="header" class="sticky top-0 z-50 transition-all duration-300 bg-transparent opacity-0 pointer-events-none in-hero slide-out">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-white flex items-center">
+                   Filo Nematoda
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#sobre" class="text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-medium">Sobre</a>
+                    <a href="#doencas" class="text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-medium">Doenças</a>
+                    <a href="#prevencao" class="text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-medium">Prevenção</a>
+                    <a href="#faq" class="text-gray-300 hover:text-yellow-400 transition-colors duration-300 font-medium">FAQ</a>
+                </div>
+                <button id="menu-btn" class="md:hidden text-white" aria-label="Toggle menu">
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <!-- Menu móvel -->
+            <div id="mobile-menu" class="md:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0">
+                <div class="flex flex-col space-y-2 mt-4">
+                    <a href="#sobre" class="text-gray-300 hover:bg-gray-800 rounded px-3 py-2 transition-colors duration-300">Sobre</a>
+                    <a href="#doencas" class="text-gray-300 hover:bg-gray-800 rounded px-3 py-2 transition-colors duration-300">Doenças</a>
+                    <a href="#prevencao" class="text-gray-300 hover:bg-gray-800 rounded px-3 py-2 transition-colors duration-300">Prevenção</a>
+                    <a href="#faq" class="text-gray-300 hover:bg-gray-800 rounded px-3 py-2 transition-colors duration-300">FAQ</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+    <!-- Seção principal (hero) -->
+        <section class="relative h-screen flex items-center justify-center bg-cover bg-center bg-fixed" style="background-image: url('archives/nematoda_principal.jpg');">"
+            <div class="absolute inset-0 bg-black/60"></div>
+            <div class="relative z-10 text-center text-white px-4">
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-wider">
+                    Nematoda
+                </h1>
+                 <p class="text-lg md:text-xl mt-4 max-w-2xl mx-auto text-gray-300">
+                    Explorando o mundo invisível e o impacto profundo do Filo Nematoda.
+                </p>
+                <a href="#sobre" class="mt-8 inline-block bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-bold text-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
+                    Descubra Mais
+                </a>
+            </div>
+        </section>
+
+    <!-- Seção Sobre -->
+        <section id="sobre" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-16 text-white">Sobre o <span class="text-yellow-400">Filo Nematoda</span></h2>
+                
+                <div class="flex flex-col md:flex-row gap-12">
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-semibold mb-4 text-yellow-400">Diversidade e Importância</h3>
+                        <p class="mb-4 text-gray-300">Os nematódeos são vermes cilíndricos alongados que apresentam simetria bilateral e são revestidos por uma cutícula resistente. Com mais de 25,000 espécies descritas (e estimativas de até 1 milhão), eles habitam praticamente todos os ambientes da Terra.</p>
+                        <p class="text-gray-300">Embora muitas espécies sejam de vida livre e desempenhem papéis ecológicos cruciais, como decompositores, outras são parasitas de plantas e animais, incluindo humanos, causando diversas doenças.</p>
+                        
+                        <div class="mt-8 bg-gray-900 p-6 rounded-lg border-l-4 border-yellow-400">
+                            <h4 class="text-xl font-semibold mb-4 text-white">Características Principais</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start"><i data-feather="check-circle" class="text-yellow-400 mr-3 mt-1 flex-shrink-0"></i><span>Corpo alongado e cilíndrico (forma de fio)</span></li>
+                                <li class="flex items-start"><i data-feather="check-circle" class="text-yellow-400 mr-3 mt-1 flex-shrink-0"></i><span>Pseudoceloma (cavidade corporal falsa)</span></li>
+                                <li class="flex items-start"><i data-feather="check-circle" class="text-yellow-400 mr-3 mt-1 flex-shrink-0"></i><span>Sistema digestório completo (boca e ânus)</span></li>
+                                <li class="flex items-start"><i data-feather="check-circle" class="text-yellow-400 mr-3 mt-1 flex-shrink-0"></i><span>Cutícula quitinosa que protege e permite crescimento</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2">
+                        <div class="bg-gray-900 p-6 rounded-lg h-full flex flex-col">
+                            <h3 class="text-2xl font-semibold mb-1 text-yellow-400">Morfologia da Lombriga</h3>
+                            <p class="text-sm text-gray-400 mb-4">(Ascaris lumbricoides)</p>
+                            <img src="archives/morfologia.jpg" alt="Morfologia da lombriga" class="rounded-lg mb-4 w-full shadow-lg"/> <!-- substituir aqui -->
+                            
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Dimorfismo Sexual</h4>
+                            <p class="mb-4 text-gray-300">As lombrigas apresentam dimorfismo sexual evidente. Os machos são menores (15-30 cm) com extremidade posterior curva, enquanto as fêmeas são maiores (20-40 cm) com extremidade reta.</p>
+
+                            <h4 class="text-xl font-semibold mt-6 mb-2">Sistemas Avançados</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                                <div class="bg-gray-800 p-4 rounded-lg border-t-4 border-yellow-400">
+                                    <h5 class="font-semibold text-yellow-400">Reprodutor</h5>
+                                    <p class="text-sm text-gray-300">Altamente desenvolvido. Fêmeas produzem até 200.000 ovos por dia.</p>
+                                </div>
+                                <div class="bg-gray-800 p-4 rounded-lg border-t-4 border-yellow-400">
+                                    <h5 class="font-semibold text-yellow-400">Digestório COMPLETO</h5>
+                                    <p class="text-sm text-gray-300">Possui boca para ingestão, intestino para absorção e ânus para eliminação.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Seção Doenças -->
+        <section id="doencas" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-4 text-white">Doenças Causadas por <span class="text-yellow-400">Nematódeos</span></h2>
+                <p class="text-center mb-12 max-w-3xl mx-auto text-gray-300">Os nematódeos parasitas podem causar diversas doenças em humanos, muitas delas relacionadas a condições precárias de saneamento básico.</p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Doença 1 -->
+                    <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-yellow-400/20">
+                        <img src="archives/ascaridiase.jpg" alt="Ascaridíase" class="w-full h-48 object-cover"/>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-yellow-400">Ascaridíase</h3>
+                            <p class="text-gray-400 mb-4 text-sm">Causada pela lombriga, transmitida por ingestão de ovos em alimentos ou água contaminados por falta de saneamento básico.</p>
+                            <div class="flex items-start text-sm text-gray-300">
+                                <i data-feather="alert-triangle" class="mr-2 text-red-500 flex-shrink-0 mt-1"></i>
+                                <span><strong>Sintomas:</strong> Dor abdominal, náuseas, obstrução intestinal</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Doença 2 -->
+                    <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-yellow-400/20">
+                        <img src="archives/Ancilostomíase.png" alt="Ancilostomíase" class="w-full h-48 object-cover"/>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-yellow-400">Ancilostomíase (Amarelão)</h3>
+                            <p class="text-gray-400 mb-4 text-sm">As larvas penetram na pele, geralmente de pés descalços em solo contaminado, causando o "amarelão".</p>
+                            <div class="flex items-start text-sm text-gray-300">
+                                <i data-feather="alert-triangle" class="mr-2 text-red-500 flex-shrink-0 mt-1"></i>
+                                <span><strong>Sintomas:</strong> Anemia, fadiga, déficit cognitivo</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Doença 3 -->
+                     <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-yellow-400/20">
+                        <img src="archives/larva-migrans-ciclo.jpg" alt="Larva Migrans" class="w-full h-48 object-cover"/>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-yellow-400">Larva Migrans</h3>
+                            <p class="text-gray-400 mb-4 text-sm">Causada por larvas de parasitas de cães e gatos, presentes em fezes contaminadas. Penetram na pele humana.</p>
+                            <div class="flex items-start text-sm text-gray-300">
+                                <i data-feather="alert-triangle" class="mr-2 text-red-500 flex-shrink-0 mt-1"></i>
+                                <span><strong>Sintomas:</strong> Lesões serpiginosas e pruriginosas na pele</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Doença 4 -->
+                    <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-yellow-400/20">
+                        <img src="archives/vidafilaria.jpg" alt="Filariose" class="w-full h-48 object-cover"/>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-yellow-400">Filariose (Elefantíase)</h3>
+                            <p class="text-gray-400 mb-4 text-sm">Transmitida pela picada de mosquitos. Os vermes adultos obstruem os vasos linfáticos, causando inchaço crônico.</p>
+                            <div class="flex items-start text-sm text-gray-300">
+                                <i data-feather="alert-triangle" class="mr-2 text-red-500 flex-shrink-0 mt-1"></i>
+                                <span><strong>Sintomas:</strong> Inchaço crônico de membros, hidrocele</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Doença 5 -->
+                    <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-2 hover:shadow-yellow-400/20">
+                        <img src="archives/oxiurosecicloeditavel-cke.jpg" alt="Oxiurose" class="w-full h-48 object-cover"/>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-yellow-400">Oxiurose</h3>
+                            <p class="text-gray-400 mb-4 text-sm">Comum em crianças. A transmissão ocorre pela ingestão de ovos, que são leves e podem se espalhar pelo ambiente.</p>
+                            <div class="flex items-start text-sm text-gray-300">
+                                <i data-feather="alert-triangle" class="mr-2 text-red-500 flex-shrink-0 mt-1"></i>
+                                <span><strong>Sintomas:</strong> Prurido anal intenso, principalmente noturno</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-400 text-gray-900 rounded-xl shadow-lg p-6 flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold mb-4">Números de prevalência de filariose (OMS)</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="text-4xl font-bold">40 milhões</div>
+                                <p class="font-medium">Apresentam doença crônica</p>
+                            </div>
+                            <div>
+                                <div class="text-4xl font-bold">140 milhões</div>
+                                <p class="font-medium">Já foram infectadas</p>
+                            </div>
+                            <div>
+                                <div class="text-4xl font-bold">863 milhões</div>
+                                <p class="font-medium">Continuam em risco</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Seção Ciclo de Vida -->
+        <section class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-16 text-white">Ciclo de Vida da <span class="text-yellow-400">Lombriga</span></h2>
+                
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2">
+                        <img src="archives/20210817-doencas-nematodeos.png" alt="Ciclo de vida da lombriga" class="rounded-lg shadow-2xl w-full"/>
+                    </div>
+                    <div class="lg:w-1/2">
+                        <div class="space-y-6">
+                            <!-- Etapa 1 -->
+                            <div class="flex items-start">
+                                <div class="bg-gray-700 p-3 rounded-full mr-4 mt-1">
+                                    <i data-feather="git-commit" class="text-yellow-400"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-1 text-white">1. Eliminação de ovos</h3>
+                                    <p class="text-gray-400">Os ovos são eliminados nas fezes humanas e podem sobreviver no solo por anos em condições adequadas.</p>
+                                </div>
+                            </div>
+                            <!-- Etapa 2 -->
+                            <div class="flex items-start">
+                                <div class="bg-gray-700 p-3 rounded-full mr-4 mt-1">
+                                    <i data-feather="git-commit" class="text-yellow-400"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-1 text-white">2. Ingestão acidental</h3>
+                                    <p class="text-gray-400">Ovos em alimentos mal lavados ou água contaminada são ingeridos, liberando larvas no intestino.</p>
+                                </div>
+                            </div>
+                            <!-- Etapa 3 -->
+                            <div class="flex items-start">
+                                <div class="bg-gray-700 p-3 rounded-full mr-4 mt-1">
+                                    <i data-feather="git-commit" class="text-yellow-400"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-1 text-white">3. Migração complexa</h3>
+                                    <p class="text-gray-400">As larvas penetram a parede intestinal, caem na corrente sanguínea, passam pelo fígado, coração e pulmões.</p>
+                                </div>
+                            </div>
+                             <!-- Etapa 4 -->
+                            <div class="flex items-start">
+                                <div class="bg-gray-700 p-3 rounded-full mr-4 mt-1">
+                                    <i data-feather="git-commit" class="text-yellow-400"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-1 text-white">4. Retorno ao intestino</h3>
+                                    <p class="text-gray-400">Das vias aéreas, são deglutidas e retornam ao intestino delgado, onde se tornam adultas e se reproduzem.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 bg-yellow-900/50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i data-feather="alert-triangle" class="text-yellow-400"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <h3 class="text-sm font-medium text-yellow-300">Fator de risco</h3>
+                                    <div class="mt-2 text-sm text-yellow-200">
+                                        <p>A falta de saneamento básico e o uso de fezes humanas como fertilizante são os principais fatores de disseminação da ascaridíase.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Seção Prevenção -->
+        <section id="prevencao" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-4 text-white">Prevenção e Controle</h2>
+                <p class="text-center mb-12 max-w-3xl mx-auto text-gray-300">Medidas simples podem prevenir a maioria das infecções por nematódeos parasitas.</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Dica 1 -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg text-center">
+                        <div class="bg-yellow-400/10 border-2 border-yellow-400 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="home" class="text-yellow-400 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-white">Saneamento Básico</h3>
+                        <p class="text-gray-400">Construção de banheiros adequados e tratamento de esgoto são fundamentais para quebrar o ciclo de transmissão.</p>
+                    </div>
+                     <!-- Dica 2 -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg text-center">
+                        <div class="bg-yellow-400/10 border-2 border-yellow-400 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="droplet" class="text-yellow-400 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-white">Higiene Pessoal</h3>
+                        <p class="text-gray-400">Lavar bem as mãos, frutas e verduras com água tratada.</p>
+                    </div>
+                     <!-- Dica 3 -->
+                    <div class="bg-gray-800 p-8 rounded-xl shadow-lg text-center">
+                        <div class="bg-yellow-400/10 border-2 border-yellow-400 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="shield" class="text-yellow-400 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3 text-white">Proteção Individual</h3>
+                        <p class="text-gray-400">Usar calçados, tratar animais de estimação e evitar solo contaminado.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-16 bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-1/2 p-8">
+                            <h3 class="text-2xl font-semibold mb-4 text-yellow-400">Tratamento e Controle</h3>
+                            <p class="mb-6 text-gray-300">O tratamento é feito com medicamentos antiparasitários como albendazol e mebendazol, mas a prevenção é sempre a melhor estratégia.</p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <i data-feather="check-circle" class="text-green-500 mr-3 mt-1 flex-shrink-0"></i>
+                                    <span class="text-gray-300">Campanhas de desparasitação em massa em áreas endêmicas</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <i data-feather="check-circle" class="text-green-500 mr-3 mt-1 flex-shrink-0"></i>
+                                    <span class="text-gray-300">Educação sanitária nas comunidades</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <i data-feather="check-circle" class="text-green-500 mr-3 mt-1 flex-shrink-0"></i>
+                                    <span class="text-gray-300">Melhoria das condições de habitação e saneamento</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            <img src="archives/SaneamentoBasico.png" alt="Campanha de prevenção" class="w-full h-full object-cover"/>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Seção FAQ -->
+        <section id="faq" class="py-20 bg-gray-800">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white">Perguntas Frequentes</h2>
+                
+                <div id="faq-container" class="space-y-4">
+                     <!-- FAQ 1 -->
+                    <div class="faq-item border-2 border-gray-700 rounded-lg overflow-hidden bg-gray-900">
+                        <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-800 transition-colors duration-200">
+                            <span class="font-medium text-lg text-white">Todos os nematódeos são parasitas?</span>
+                            <i data-feather="chevron-down" class="faq-icon text-yellow-400 transform transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer overflow-hidden transition-all duration-500 ease-in-out max-h-0">
+                            <div class="px-6 pb-6 pt-2">
+                                <p class="text-gray-400">Não. A maioria das espécies de nematódeos são de vida livre e desempenham papéis ecológicos importantes no solo e em ambientes aquáticos, participando da decomposição da matéria orgânica e da ciclagem de nutrientes. Apenas uma pequena porcentagem são parasitas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ 2 -->
+                    <div class="faq-item border-2 border-gray-700 rounded-lg overflow-hidden bg-gray-900">
+                        <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-800 transition-colors duration-200">
+                            <span class="font-medium text-lg text-white">Como saber se estou com verminose?</span>
+                            <i data-feather="chevron-down" class="faq-icon text-yellow-400 transform transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer overflow-hidden transition-all duration-500 ease-in-out max-h-0">
+                            <div class="px-6 pb-6 pt-2">
+                                <p class="text-gray-400">Os sintomas variam, mas podem incluir dor abdominal, diarreia, náuseas, perda de peso e anemia. O diagnóstico definitivo é feito através de exames de fezes. Em caso de suspeita, consulte um médico.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FAQ 3 -->
+                    <div class="faq-item border-2 border-gray-700 rounded-lg overflow-hidden bg-gray-900">
+                        <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-800 transition-colors duration-200">
+                            <span class="font-medium text-lg text-white">Posso pegar vermes do meu animal de estimação?</span>
+                            <i data-feather="chevron-down" class="faq-icon text-yellow-400 transform transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer overflow-hidden transition-all duration-500 ease-in-out max-h-0">
+                            <div class="px-6 pb-6 pt-2">
+                                <p class="text-gray-400">Sim, alguns nematódeos de cães e gatos podem infectar humanos, como no caso da Larva Migrans. É essencial manter a vermifugação dos animais em dia e praticar boa higiene.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- FAQ 4 -->
+                    <div class="faq-item border-2 border-gray-700 rounded-lg overflow-hidden bg-gray-900">
+                        <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-800 transition-colors duration-200">
+                            <span class="font-medium text-lg text-white">Por que as crianças são mais vulneráveis?</span>
+                            <i data-feather="chevron-down" class="faq-icon text-yellow-400 transform transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer overflow-hidden transition-all duration-500 ease-in-out max-h-0">
+                            <div class="px-6 pb-6 pt-2">
+                                <p class="text-gray-400">Crianças são mais suscetíveis porque frequentemente brincam no chão, levam as mãos à boca e têm sistemas imunológicos em desenvolvimento. Infecções podem causar anemia e atraso no desenvolvimento.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- FAQ 5 -->
+                    <div class="faq-item border-2 border-gray-700 rounded-lg overflow-hidden bg-gray-900">
+                        <button class="faq-question w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-800 transition-colors duration-200">
+                            <span class="font-medium text-lg text-white">Existe vacina contra verminoses?</span>
+                            <i data-feather="chevron-down" class="faq-icon text-yellow-400 transform transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer overflow-hidden transition-all duration-500 ease-in-out max-h-0">
+                            <div class="px-6 pb-6 pt-2">
+                                <p class="text-gray-400">Atualmente não existem vacinas disponíveis para as principais helmintíases humanas. A prevenção baseia-se em medidas de saneamento, higiene e tratamento medicamentoso periódico em áreas endêmicas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Seção CTA (Chamada à Ação) -->
+        <section class="py-20 bg-yellow-400 text-gray-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-6">Navegação Rápida</h2>
+                <p class="text-xl mb-8 max-w-3xl mx-auto">Explore o código fonte ou pule diretamente para a seção que mais lhe interessa.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://github.com/emanuecaIFFar" target="_blank" rel="noopener noreferrer" class="bg-gray-900 text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition-colors duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2">
+                        <i data-feather="github" class="w-5 h-5"></i>
+                        Ver Código no GitHub
+                    </a>
+                    <a href="#sobre" class="border-2 border-gray-900 px-8 py-3 rounded-lg font-bold hover:bg-gray-900 hover:text-white transition-all duration-300 transform hover:scale-105">Sobre</a>
+                    <a href="#doencas" class="border-2 border-gray-900 px-8 py-3 rounded-lg font-bold hover:bg-gray-900 hover:text-white transition-all duration-300 transform hover:scale-105">Doenças</a>
+                    <a href="#prevencao" class="border-2 border-gray-900 px-8 py-3 rounded-lg font-bold hover:bg-gray-900 hover:text-white transition-all duration-300 transform hover:scale-105">Prevenção</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para exibir imagem ampliada -->
+    <div id="imgModal" aria-hidden="true">
+        <button class="close-btn" id="closeModal" aria-label="Fechar">&times;</button>
+        <img id="modalImg" src="" alt="Imagem ampliada">
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-400 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-white">
+                        Filo Nematoda
+                    </h3>
+                    <p class="text-sm italic">“They tend to be chronic and debilitating infections.” — Peter J. Hotez, sobre o impacto das NTDs.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#sobre" class="hover:text-yellow-400 transition-colors">Sobre</a></li>
+                        <li><a href="#doencas" class="hover:text-yellow-400 transition-colors">Doenças</a></li>
+                        <li><a href="#prevencao" class="hover:text-yellow-400 transition-colors">Prevenção</a></li>
+                        <li><a href="#faq" class="hover:text-yellow-400 transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Recursos (YouTube)</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="https://www.youtube.com/watch?v=8XQeYEG7b3U" class="hover:text-yellow-400 transition-colors">Resumo - NEMATELMINTOS </a></li>
+                        <li><a href="https://www.youtube.com/watch?v=UMpaiBPMSWE" class="hover:text-yellow-400 transition-colors">Nematódeos - Brasil Escola</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=AtCdmW_kgEY" class="hover:text-yellow-400 transition-colors">Verminoses: doenças causadas por vermes - Brasil Escola </a></li>
+                        <li><a href="https://www.youtube.com/watch?v=q1bRW7ZNNZs" class="hover:text-yellow-400 transition-colors">Ascaridíase (lombriga) - Aula 14, Módulo VI: Zoologia | Prof. Guilherme </a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-white">Contato</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/emanuecaIFFar" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-400 transition-colors"><i data-feather="github"></i></a>
+                        <a href="#" class="hover:text-yellow-400 transition-colors"><i data-feather="instagram"></i></a>
+                        <a href="#" class="hover:text-yellow-400 transition-colors"><i data-feather="youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm">
+                 <div class="flex items-center justify-center gap-2">
+                    <i data-feather="github" class="w-4 h-4"></i>
+                    <p>
+                        filo-nematoda: <a href="https://github.com/emanuecaIFFar" target="_blank" rel="noopener noreferrer" class="underline hover:text-yellow-400 transition-colors">https://github.com/emanuecaIFFar</a>. Todos os direitos reservados.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Inicialização dos ícones Feather
+    feather.replace();
+
+    // Alternar menu móvel
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = menuBtn.querySelector('i');
+
+        menuBtn.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.contains('max-h-96');
+            if (isOpen) {
+                mobileMenu.classList.remove('max-h-96', 'py-2');
+                mobileMenu.classList.add('max-h-0');
+                menuIcon.setAttribute('data-feather', 'menu');
+            } else {
+                mobileMenu.classList.remove('max-h-0');
+                mobileMenu.classList.add('max-h-96', 'py-2');
+                menuIcon.setAttribute('data-feather', 'x');
+            }
+            feather.replace();
+        });
+        
+    // Fechar menu móvel ao clicar em um link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('max-h-96', 'py-2');
+                mobileMenu.classList.add('max-h-0');
+                menuIcon.setAttribute('data-feather', 'menu');
+                feather.replace();
+            });
+        });
+
+        // Efeito no cabeçalho ao rolar a página
+        const header = document.getElementById('header');
+        const heroSection = document.querySelector('main section'); // primeiro section é o hero
+
+    // Mostrar/ocultar header com base na direção do scroll
+    let lastScrollY = window.scrollY;
+        function showHeader() {
+            header.classList.remove('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero', 'slide-out');
+            header.classList.add('bg-gray-900/50', 'shadow-lg', 'backdrop-blur-sm', 'slide-in');
+        }
+        function hideHeader() {
+            header.classList.remove('bg-gray-900/50', 'shadow-lg', 'backdrop-blur-sm', 'slide-in');
+            header.classList.add('bg-transparent', 'opacity-0', 'pointer-events-none', 'in-hero', 'slide-out');
+        }
+
+        function updateHeaderOnScroll() {
+            // usa a altura do hero como limiar; se não encontrado, usa 40px como fallback
+            const heroThreshold = heroSection ? (heroSection.offsetHeight - 10) : Infinity;
+            const smallThreshold = 40; // mostra header quando rolar um pequeno trecho
+            const currentY = window.scrollY;
+            const isScrollingDown = currentY > lastScrollY;
+
+            // Mostrar se rolou para baixo mais que smallThreshold ou se passou do hero e rolando para baixo
+            if ((currentY > smallThreshold && isScrollingDown) || (currentY > heroThreshold && isScrollingDown)) {
+                showHeader();
+            } else {
+                hideHeader();
+            }
+
+            lastScrollY = currentY;
+        }
+
+        // estado inicial e listener
+        updateHeaderOnScroll();
+        window.addEventListener('scroll', updateHeaderOnScroll);
+
+    // Acordeão do FAQ
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach((item, index) => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+                const isOpen = answer.classList.contains('max-h-96');
+
+                // Fechar todos os outros itens do FAQ
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.querySelector('.faq-answer').classList.remove('max-h-96');
+                         otherItem.querySelector('.faq-answer').classList.add('max-h-0');
+                        otherItem.querySelector('.faq-icon').classList.remove('rotate-180');
+                    }
+                });
+                
+                // Alternar o item atual do FAQ
+                if (isOpen) {
+                    answer.classList.remove('max-h-96');
+                    answer.classList.add('max-h-0');
+                    icon.classList.remove('rotate-180');
+                } else {
+                    answer.classList.remove('max-h-0');
+                    answer.classList.add('max-h-96');
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
+
+    // Modal de imagem: ao clicar em qualquer imagem do diretório archives/ abre em tela cheia
+        (function(){
+            const modal = document.getElementById('imgModal');
+            const modalImg = document.getElementById('modalImg');
+            const closeBtn = document.getElementById('closeModal');
+
+            function openModal(src, alt) {
+                modalImg.src = src;
+                modalImg.alt = alt || 'Imagem ampliada';
+                modal.classList.add('open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modal.setAttribute('aria-hidden', 'true');
+                modalImg.src = '';
+                document.body.style.overflow = ''; 
+            }
+
+            // Adicionar classe e listener para imagens do diretório archives/
+            document.querySelectorAll('img').forEach(img => {
+                try {
+                    if(img.getAttribute('src') && img.getAttribute('src').includes('archives/')){
+                        img.classList.add('zoomable-img');
+                        img.addEventListener('click', () => openModal(img.src, img.alt));
+                    }
+                } catch(e) { /* proteção contra atributos inválidos */ }
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            // fechar ao clicar fora da imagem
+            modal.addEventListener('click', (e) => {
+                if(e.target === modal) closeModal();
+            });
+
+            // fechar com Esc
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+            });
+        })();
+
+    </script>
+</body>
+</html>
